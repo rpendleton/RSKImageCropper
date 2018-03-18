@@ -160,7 +160,7 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
     UIApplication *application = [UIApplication rsk_sharedApplication];
     if (application) {
         self.originalStatusBarHidden = application.statusBarHidden;
-        [application setStatusBarHidden:YES];
+        [application setStatusBarHidden:[self prefersStatusBarHidden]];
     }
     
     self.originalNavigationControllerNavigationBarHidden = self.navigationController.navigationBarHidden;
@@ -627,13 +627,7 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
 
 - (void)resetZoomScale
 {
-    CGFloat zoomScale;
-    if (CGRectGetWidth(self.view.bounds) > CGRectGetHeight(self.view.bounds)) {
-        zoomScale = CGRectGetHeight(self.view.bounds) / self.originalImage.size.height;
-    } else {
-        zoomScale = CGRectGetWidth(self.view.bounds) / self.originalImage.size.width;
-    }
-    self.imageScrollView.zoomScale = zoomScale;
+    [self.imageScrollView setInitialZoomScale];
 }
 
 - (NSArray *)intersectionPointsOfLineSegment:(RSKLineSegment)lineSegment withRect:(CGRect)rect

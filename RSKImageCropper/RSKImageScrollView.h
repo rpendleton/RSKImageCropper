@@ -54,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, strong) UIImageView *zoomView;
 @property (nonatomic, assign) BOOL aspectFill;
 
+- (void)setInitialZoomScale;
 - (void)displayImage:(UIImage *)image;
 
 @end
