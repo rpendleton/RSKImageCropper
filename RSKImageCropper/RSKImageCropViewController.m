@@ -627,13 +627,7 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
 
 - (void)resetZoomScale
 {
-    CGFloat zoomScale;
-    if (CGRectGetWidth(self.view.bounds) > CGRectGetHeight(self.view.bounds)) {
-        zoomScale = CGRectGetHeight(self.view.bounds) / self.originalImage.size.height;
-    } else {
-        zoomScale = CGRectGetWidth(self.view.bounds) / self.originalImage.size.width;
-    }
-    self.imageScrollView.zoomScale = zoomScale;
+    [self.imageScrollView setInitialZoomScale];
 }
 
 - (NSArray *)intersectionPointsOfLineSegment:(RSKLineSegment)lineSegment withRect:(CGRect)rect
